@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import pincodes from './pincodes.json';
-import PincodeMap from "./pinmap";
-import Table from "./Table";
+import pincodes from './data/pincodes.json';
+import PincodeMap from "./components/Map/Map";
+import Table from "./components/Table/Table";
 
 function App() {
   const [pinCodes, setPinCodes] = useState([]);

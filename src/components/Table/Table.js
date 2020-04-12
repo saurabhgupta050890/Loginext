@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useTable, useFilters } from "react-table";
+import useCustom from "../../helpers/globalState";
 
 export default function Table({ columns, data }) {
 
     const [filterInput, setFilterInput] = useState("");
+    const [selectedPin, setSelectedPin] = useCustom({});
 
     // Update the state when input changes
     const handleFilterChange = e => {
@@ -25,13 +27,18 @@ export default function Table({ columns, data }) {
         data
     }, useFilters);
 
+    const handleSelect = (event, pincode) => {
+        console.log(pincode);
+        setSelectedPin(pincode);
+    }
+
     return (
         <div>
             <div className="Input">
-            <input className="input" type="text" placeholder="Search Pincode here .... "
+                <input className="input" type="text"
                     value={filterInput}
                     onChange={handleFilterChange}
-                    placeholder={"Search name"}
+                    placeholder={"Search Pincode here ..."}
                     style={{
                         "width": "100%"
                     }}
@@ -52,7 +59,9 @@ export default function Table({ columns, data }) {
                     {rows.map((row, i) => {
                         prepareRow(row);
                         return (
-                            <tr {...row.getRowProps()}>
+                            <tr {...row.getRowProps()}
+                                className={row.values.pincode === selectedPin.pincode ? "is-selected" : ""}
+                                onClick={(e) => handleSelect(e, row.values)}>
                                 {row.cells.map(cell => {
                                     return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                 })}

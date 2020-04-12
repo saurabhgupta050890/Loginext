@@ -1,14 +1,16 @@
 
 import React from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, Marker, TileLayer } from "react-leaflet";
+import useCustom from "../../helpers/globalState";
 
 export default function PincodeMap(props) {
-    let marker = props.pincodes.map(x => {
-        let pos = [x.lat, x.lng];
-        return <Marker />
-    });
+    const [selectedPin, setSelectedPin] = useCustom({});
+
     return (
-        <Map center={[52.8314927, -8.9775014]} zoom={5} className="two">
+        <Map center={selectedPin.pincode ? [selectedPin.lat, selectedPin.lng] : [23.106401, 113.459749]} 
+        zoom={5} 
+        className="two"
+        animate={true}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
