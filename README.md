@@ -36,7 +36,7 @@ https://github.com/saurabhgupta050890/Loginext/blob/master/src/data/pincodes.jso
 
 React Leaflet -- https://react-leaflet.js.org/
 
-**Note: Didn't used Google Maps beacause of it was asking for billing setup**
+**Note: Didn't used Google Maps beacause it was asking for billing setup**
 
 ### `yarn eject`
 
