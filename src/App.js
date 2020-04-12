@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import pincodes from './pincodes.json';
+import PincodeMap from "./pinmap";
+import Table from "./Table";
 
 function App() {
+  const [pinCodes, setPinCodes] = useState([]);
+
+  // Using useEffect to call the API once mounted and set the data
+  useEffect(() => {
+    setPinCodes(pincodes.filter(x => x.pincode))
+  }, []);
+
+  const columns = useMemo(() => [
+    {
+      Header: 'PINCODE',
+      accessor: 'pincode',
+    },
+    {
+      Header: 'LATITUTE',
+      accessor: 'lat',
+    },
+    {
+      Header: "LONGITUTE",
+      accessor: "lng"
+    }
+  ], []);
+
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <span> Pincode Search </span>
       </header>
+
+      <div className="App">
+        <div className="one" >
+          <Table columns={columns} data={pinCodes}></Table>
+        </div>
+          <PincodeMap pincodes={pinCodes} />
+      </div>
     </div>
   );
 }
