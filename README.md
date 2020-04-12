@@ -28,6 +28,16 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Data File
+
+https://github.com/saurabhgupta050890/Loginext/blob/master/src/data/pincodes.json
+
+## Mapping Library
+
+React Leaflet -- https://react-leaflet.js.org/
+
+**Note: Didn't used Google Maps beacause of it was asking for billing setup **
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
